@@ -50,25 +50,6 @@ class UsersController < ApplicationController
   def user_params
       params.require(:user).permit(:name, :email, :password, :password_confirmation)
     end
-  
-  def set_user
-    @user = User.find(params[:id])
-  end
-  
-  
-    # ログイン済みのユーザーか確認します。
-    def logged_in_user
-      unless logged_in?
-        store_location
-        flash[:danger] = "ログインしてください。"
-        redirect_to login_url
-      end
-    end
-
-    # アクセスしたユーザーが現在ログインしているユーザーか確認します。
-    def correct_user
-      redirect_to(root_url) unless current_user?(@user)
-    end
     
     def update_basic_info
      if @user.update_attributes(basic_info_params)
@@ -80,9 +61,5 @@ class UsersController < ApplicationController
     end
     
     def edit_basic_info
-    end
-    
-    def admin_user
-      redirect_to root_url unless current_user.adimn?
     end
 end

@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   include SessionsHelper
   
   $days_of_the_week = %w{日 月 火 水 木 金 土}
-  
+    
   def set_one_month 
     @first_day = params[:date].nil? ?
     Date.current.beginning_of_month : params[:date].to_date

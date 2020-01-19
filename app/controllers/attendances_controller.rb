@@ -36,7 +36,7 @@ class AttendancesController < ApplicationController
       attendance.update_attributes!(item)
     end
   end
-  flash[:success] = "1ヶ月分の勤怠情報を更新しました。"
+  flash[:success] = "１ヶ月分の勤怠情報を更新しました。"
   redirect_to user_url(date: params[:date])
 rescue ActiveRecord::RecordInvalid # トランザクションによるエラーの分岐です。
   flash[:danger] = "無効な入力データがあった為、更新をキャンセルしました。"
@@ -50,7 +50,7 @@ end
     end
     
     def admin_or_correct_user
-      @user = User.find(params[:user_id]) if @user.bland?
+      @user = User.find(params[:user_id]) if @user.blank?
       unless current_user?(@user) || current_user.admin?
         flash[:danger] = "編集権限がありません。"
         redirect_to(root_url)

@@ -2,6 +2,11 @@
 <h1>利用者一覧</h1>
 <div class="row">
   <div class="col-md-10 col-md-offset-1">
+    <p>ユーザー名検索</p>
+      <%= form_tag(users_path, :method => "get") do %>
+        <%= text_field_tag :search %> 
+        <%= submit_tag "検索" ,:username => nil ,class: "btn-default" %> 
+      <% end %> 
     <%= will_paginate @users, previous_label: '&lt 前へ', next_label: '次へ &gt' %>
     <table class="table table-condensed table-hover" id="user-table">
       <thead>
